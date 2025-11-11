@@ -1,0 +1,359 @@
+/**
+ * テニススクール開催連絡 - 管理画面スタイル
+ */
+
+/* 管理画面全体 */
+.tsn-admin-wrap {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* 必須マーク */
+.required {
+    color: #d63638;
+    font-weight: bold;
+}
+
+/* 色選択エリア */
+.tsn-color-selector {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tsn-color-selector label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.tsn-color-selector label:hover {
+    transform: scale(1.05);
+}
+
+.tsn-color-selector input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+/* 色バッジ */
+.tsn-color-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tsn-color-badge.green {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    border-color: #4CAF50;
+}
+
+.tsn-color-badge.yellow {
+    background: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+    border-color: #FFC107;
+    color: #333;
+}
+
+.tsn-color-badge.red {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+    border-color: #f44336;
+}
+
+.tsn-color-selector input[type="radio"]:checked + .tsn-color-badge {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+/* サンプルメッセージセレクター */
+.tsn-sample-messages {
+    margin-bottom: 0.75rem;
+}
+
+.tsn-sample-messages label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.tsn-sample-messages select {
+    margin-top: 0.25rem;
+}
+
+/* プレビューエリア */
+.tsn-preview-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.tsn-preview-container h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#tsn-preview-area {
+    background: white;
+    padding: 0;
+    border-radius: 8px;
+    min-height: 150px;
+}
+
+/* プレビューエリア内の通知はアニメーションを無効化 */
+#tsn-preview-area .tsn-notification {
+    animation: none !important;
+    margin: 0;
+}
+
+.tsn-notification-preview {
+    color: #666;
+    text-align: center;
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* 一覧表示 */
+.wp-list-table .column-date {
+    width: 15%;
+}
+
+.wp-list-table .column-message {
+    width: 40%;
+}
+
+.wp-list-table .column-color {
+    width: 15%;
+}
+
+.wp-list-table .column-created {
+    width: 15%;
+}
+
+.wp-list-table .column-actions {
+    width: 15%;
+}
+
+/* バッジスタイル */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.badge.today {
+    background: #4CAF50;
+    color: white;
+}
+
+/* 情報ボックス */
+.tsn-info-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #e7f3ff;
+    border-left: 4px solid #2271b1;
+    border-radius: 4px;
+}
+
+.tsn-info-box h3 {
+    margin-top: 0;
+    color: #2271b1;
+    font-size: 1.2rem;
+}
+
+.tsn-info-box p {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+}
+
+.tsn-info-box code {
+    background: #fff;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: Monaco, Consolas, monospace;
+    font-size: 0.9rem;
+    color: #d63638;
+}
+
+/* ボタンスタイル */
+.button.delete-notification {
+    color: #d63638;
+    border-color: #d63638;
+}
+
+.button.delete-notification:hover {
+    background: #d63638;
+    color: white;
+    border-color: #d63638;
+}
+
+/* テーブルの行ホバー */
+.wp-list-table tbody tr.hover {
+    background: #f6f7f7;
+}
+
+/* フォームテーブル */
+.form-table th {
+    padding: 20px 10px 20px 0;
+    width: 200px;
+}
+
+.form-table td {
+    padding: 15px 10px;
+}
+
+.form-table textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Datepicker カスタマイズ */
+.ui-datepicker {
+    font-size: 0.9rem;
+}
+
+.ui-datepicker-header {
+    background: #2271b1;
+    color: white;
+    border: none;
+}
+
+.ui-datepicker-title {
+    color: white;
+}
+
+.ui-datepicker td a {
+    text-align: center;
+}
+
+.ui-datepicker td a.ui-state-active {
+    background: #2271b1;
+    color: white;
+    border-color: #2271b1;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .tsn-color-selector {
+        flex-direction: column;
+    }
+
+    .form-table th,
+    .form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form-table th {
+        border-bottom: 0;
+    }
+
+    .tsn-preview-container {
+        padding: 1rem;
+    }
+
+    #tsn-preview-area {
+        padding: 1rem;
+    }
+
+    .wp-list-table .column-date,
+    .wp-list-table .column-message,
+    .wp-list-table .column-color,
+    .wp-list-table .column-created,
+    .wp-list-table .column-actions {
+        width: auto;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notice {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* カラーピッカーのラジオボタンスタイル改善 */
+.tsn-color-selector input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tsn-color-selector input[type="radio"]:checked {
+    border-color: #2271b1;
+    background: #2271b1;
+}
+
+.tsn-color-selector input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* 今日ボタン */
+.datepicker + .button {
+    margin-left: 0.5rem;
+}
+
+/* ローディングスピナー */
+.tsn-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #2271b1;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* エラーメッセージ */
+.tsn-error {
+    color: #d63638;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* 成功メッセージ */
+.tsn-success {
+    color: #4CAF50;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}

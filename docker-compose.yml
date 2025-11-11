@@ -1,0 +1,36 @@
+services:
+ db:
+  image: mysql:8.0
+  container_name: mysql8
+  restart: always
+  environment:
+    MYSQL_ROOT_PASSWORD: password # rootユーザのパスワード
+    MYSQL_DATABASE: db_local # WordPress用データベース名
+    MYSQL_USER: wp_user # WordPress用データベース接続ユーザ名
+    MYSQL_PASSWORD: password # WordPress用データベース接続パスワード
+  volumes:
+    - ./db_data:/var/lib/mysql
+ WordPress:
+  image: wordpress:latest
+  container_name: wordpress
+  restart: always
+  depends_on:
+     - db
+  ports:
+     - 8001:80
+  environment:
+    WORDPRESS_DB_HOST: db:3306 # データベースサーバ名：ポート番号
+    WORDPRESS_DB_USER: wp_user # WordPress用データベース接続ユーザ名(dbの内容に合わせる)
+    WORDPRESS_DB_PASSWORD: password # WordPress用データベース接続パスワード(dbの内容に合わせる)
+    WORDPRESS_DB_NAME: db_local # WordPress用データベース名(dbの内容に合わせる)
+    WORDPRESS_DEBUG: 1 # デバッグモードON
+  volumes:
+     - ./omorits-html:/var/www/html
+ phpmyadmin:
+  image: phpmyadmin/phpmyadmin:latest
+  container_name: phpmyadmin_ingrid
+  restart: always
+  depends_on:
+     - db
+  ports:
+     - 8081:80
