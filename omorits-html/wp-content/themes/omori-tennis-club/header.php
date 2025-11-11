@@ -42,8 +42,8 @@
                     <!-- 区切り線 -->
                     <div class="dropdown-divider"></div>
 
-                    <!-- 詳細ページメニュー -->
-                    <div class="dropdown-section-title">詳細メニュー</div>
+                    <!-- 会員メニュー -->
+                    <div class="dropdown-section-title">会員メニュー</div>
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'sidebar',
@@ -88,9 +88,9 @@
                 ?>
             </div>
 
-            <!-- 詳細ページメニュー -->
+            <!-- 会員メニュー -->
             <div class="mobile-menu-section">
-                <h3 class="mobile-menu-title">詳細メニュー</h3>
+                <h3 class="mobile-menu-title">会員メニュー</h3>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'sidebar',
