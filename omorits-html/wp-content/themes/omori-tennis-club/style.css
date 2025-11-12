@@ -594,10 +594,10 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5),
+               0 0 20px rgba(0, 0, 0, 0.3),
+               4px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hero-description {
@@ -606,6 +606,9 @@ body {
   opacity: 0.95;
   font-weight: 300;
   color: white;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6),
+               0 0 15px rgba(0, 0, 0, 0.4),
+               2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-buttons {

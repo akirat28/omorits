@@ -11,11 +11,11 @@ get_header();
     <!-- ヒーローセクション -->
     <?php
     // デフォルトの背景画像を設定
-    $default_hero_image = get_template_directory_uri() . '/images/hero.jpg';
+    $default_hero_image = get_template_directory_uri() . '/images/kv01.jpg';
 
     // カスタマイザーから設定を取得（デフォルト画像を指定）
     $hero_bg_image = get_theme_mod('hero_background_image', $default_hero_image);
-    $overlay_opacity = get_theme_mod('hero_overlay_opacity', '50');
+    $overlay_opacity = get_theme_mod('hero_overlay_opacity', '20');
     $overlay_type = get_theme_mod('hero_overlay_type', 'gradient');
 
     // オーバーレイスタイルを設定
@@ -46,10 +46,9 @@ get_header();
         <div class="hero-content">
             <span class="hero-label"> Omori Tennis Club Since 1923</span>
             <h1 class="hero-title">
-                <span class="title-line">大森テニススクールへ</span>
-                <span class="title-line gradient-text">ようこそ</span>
+                <span class="title-line gradient-text">はじめよう！テニス</span>
             </h1>
-            <p class="hero-description">大森駅から徒歩５分、ナイター設備も充実<br />閑静な住宅街にあり、緑に囲まれたスクール</p>
+            <p class="hero-description">はじめての一歩も、勝利への挑戦も。<br />みんなが主役のコートで最高の一打を。</p>
             <div class="hero-notification">
                 <?php echo do_shortcode('[tennis_notification]'); ?>
             </div>
@@ -71,8 +70,9 @@ get_header();
             </div>
 
             <!-- イントロダクション -->
-            <div class="intro-welcome">
-                <div class="welcome-content">
+            <div class="intro-welcome" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/school_img01.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.3);"></div>
+                <div class="welcome-content" style="position: relative; z-index: 1;">
                     <h3 class="welcome-title">大森テニススクールへようこそ！</h3>
                     <p class="welcome-text">
                         「何か新しいことを始めたい」「体を動かしたいけど、どうせなら楽しくなくちゃ！」<br>
@@ -188,18 +188,7 @@ get_header();
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon-wrapper">
-                    <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
-                        <circle cx="32" cy="32" r="30" stroke="url(#gradient1)" stroke-width="2" opacity="0.3"/>
-                        <path d="M32 16C23.163 16 16 23.163 16 32s7.163 16 16 16 16-7.163 16-16S40.837 16 32 16zm0 4c6.627 0 12 5.373 12 12s-5.373 12-12 12-12-5.373-12-12 5.373-12 12-12z" fill="url(#gradient1)"/>
-                        <circle cx="32" cy="32" r="4" fill="url(#gradient1)"/>
-                        <defs>
-                            <linearGradient id="gradient1" x1="0" y1="0" x2="64" y2="64">
-                                <stop stop-color="#4CAF50"/>
-                                <stop offset="1" stop-color="#2E7D32"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/充実した施設.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
                 </div>
                 <h3>充実した施設</h3>
                 <p>砂入り人工芝コート9面を完備。全天候型で快適なプレー環境を提供します。ナイター設備も充実しており、仕事帰りの練習も可能です。</p>
@@ -207,18 +196,7 @@ get_header();
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon-wrapper">
-                    <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
-                        <circle cx="20" cy="24" r="8" stroke="url(#gradient2)" stroke-width="2" fill="url(#gradient2)" opacity="0.8"/>
-                        <circle cx="44" cy="24" r="8" stroke="url(#gradient2)" stroke-width="2" fill="url(#gradient2)" opacity="0.8"/>
-                        <path d="M20 34c-6 0-10 4-10 10v6h20v-6c0-6-4-10-10-10zM44 34c-6 0-10 4-10 10v6h20v-6c0-6-4-10-10-10z" fill="url(#gradient2)" opacity="0.6"/>
-                        <defs>
-                            <linearGradient id="gradient2" x1="0" y1="0" x2="64" y2="64">
-                                <stop stop-color="#2196F3"/>
-                                <stop offset="1" stop-color="#1565C0"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/経験豊富なコーチ陣.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
                 </div>
                 <h3>経験豊富なコーチ陣</h3>
                 <p>プロテニスプレーヤー経験者を含む、経験豊富なコーチ陣が丁寧に指導。初心者から上級者まで、レベルに合わせたレッスンを提供します。</p>
@@ -226,18 +204,7 @@ get_header();
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon-wrapper">
-                    <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
-                        <rect x="16" y="28" width="32" height="20" rx="4" stroke="url(#gradient6)" stroke-width="2" fill="url(#gradient6)" opacity="0.3"/>
-                        <rect x="20" y="20" width="24" height="14" rx="2" fill="url(#gradient6)" opacity="0.6"/>
-                        <circle cx="40" cy="38" r="3" fill="url(#gradient6)"/>
-                        <defs>
-                            <linearGradient id="gradient6" x1="0" y1="0" x2="64" y2="64">
-                                <stop stop-color="#E91E63"/>
-                                <stop offset="1" stop-color="#C2185B"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/多様なクラスとジュニア.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
                 </div>
                 <h3>多様なクラスとジュニア</h3>
                 <p>初級、中級、上級などニーズに合わせた多様なプランをご用意。小学生から大人まで無理なく続けられるクラス体系です。</p>
@@ -262,14 +229,7 @@ get_header();
                     <div class="carousel-track">
                         <!-- 施設1: メインコート -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="10" y="10" width="60" height="60" rx="4" stroke="white" stroke-width="3"/>
-                                        <line x1="40" y1="10" x2="40" y2="70" stroke="white" stroke-width="3"/>
-                                        <circle cx="40" cy="40" r="8" fill="white"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/メインコート_1.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>メインコート（砂入り人工芝 3面）</h3>
                                     <p>観覧席を備えた広々としたメインコート</p>
@@ -279,15 +239,7 @@ get_header();
 
                         <!-- 施設2: サブコート -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="5" y="15" width="30" height="50" rx="2" stroke="white" stroke-width="2"/>
-                                        <rect x="40" y="15" width="30" height="50" rx="2" stroke="white" stroke-width="2"/>
-                                        <line x1="20" y1="15" x2="20" y2="65" stroke="white" stroke-width="2"/>
-                                        <line x1="55" y1="15" x2="55" y2="65" stroke="white" stroke-width="2"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/サブコート.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>サブコート（砂入り人工芝 6面）</h3>
                                     <p>全天候型で快適にプレーできます</p>
@@ -297,13 +249,7 @@ get_header();
 
                         <!-- 施設3: クラブハウス -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <path d="M40 15L15 35V65H30V50H50V65H65V35L40 15Z" stroke="white" stroke-width="3" fill="none"/>
-                                        <rect x="35" y="25" width="10" height="10" fill="white"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/クラブハウス.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>クラブハウス</h3>
                                     <p>快適な空間でリラックスできます</p>
@@ -313,16 +259,7 @@ get_header();
 
                         <!-- 施設4: シャワールーム -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="25" y="20" width="30" height="40" rx="2" stroke="white" stroke-width="3"/>
-                                        <circle cx="40" cy="15" r="3" fill="white"/>
-                                        <line x1="32" y1="25" x2="32" y2="35" stroke="white" stroke-width="2"/>
-                                        <line x1="40" y1="25" x2="40" y2="35" stroke="white" stroke-width="2"/>
-                                        <line x1="48" y1="25" x2="48" y2="35" stroke="white" stroke-width="2"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/シャワー.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>シャワールーム</h3>
                                     <p>清潔なシャワー設備完備</p>
@@ -332,15 +269,7 @@ get_header();
 
                         <!-- 施設5: ロッカールーム -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #9C27B0 0%, #6A1B9A 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="20" y="20" width="15" height="40" rx="2" stroke="white" stroke-width="2"/>
-                                        <rect x="40" y="20" width="15" height="40" rx="2" stroke="white" stroke-width="2"/>
-                                        <circle cx="27.5" cy="35" r="2" fill="white"/>
-                                        <circle cx="47.5" cy="35" r="2" fill="white"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/ロッカールーム.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>ロッカールーム</h3>
                                     <p>広々としたロッカー完備</p>
@@ -350,15 +279,7 @@ get_header();
 
                         <!-- 施設6: ラウンジ -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="15" y="35" width="50" height="25" rx="2" stroke="white" stroke-width="3"/>
-                                        <path d="M20 35V30C20 27 22 25 25 25H55C58 25 60 27 60 30V35" stroke="white" stroke-width="2"/>
-                                        <line x1="25" y1="60" x2="25" y2="70" stroke="white" stroke-width="2"/>
-                                        <line x1="55" y1="60" x2="55" y2="70" stroke="white" stroke-width="2"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/ラウンジ.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>ラウンジ</h3>
                                     <p>くつろぎの空間でリフレッシュ</p>
@@ -368,15 +289,7 @@ get_header();
 
                         <!-- 施設7: 駐車場 -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);">
-                                <div class="facility-placeholder">
-                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                        <rect x="20" y="30" width="40" height="25" rx="3" stroke="white" stroke-width="3"/>
-                                        <circle cx="28" cy="55" r="5" stroke="white" stroke-width="2" fill="none"/>
-                                        <circle cx="52" cy="55" r="5" stroke="white" stroke-width="2" fill="none"/>
-                                        <rect x="25" y="20" width="30" height="10" rx="1" fill="white"/>
-                                    </svg>
-                                </div>
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/駐車場.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>駐車場（27台完備）</h3>
                                     <p>会員様は無料でご利用いただけます</p>
