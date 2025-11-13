@@ -141,3 +141,34 @@ function tsn_ajax_get_notification() {
         wp_send_json_error('データの取得に失敗しました。');
     }
 }
+
+// AJAXハンドラー（カレンダーデータ取得）
+add_action('wp_ajax_tsn_get_calendar_data', 'tsn_ajax_get_calendar_data');
+function tsn_ajax_get_calendar_data() {
+    // セキュリティチェック
+    if (!check_ajax_referer('tsn_ajax_nonce', 'nonce', false)) {
+        wp_die('Security check failed');
+    }
+
+    if (!current_user_can('manage_options')) {
+        wp_die('Permission denied');
+    }
+
+    $year = intval($_POST['year']);
+    $month = intval($_POST['month']);
+
+    // 年月のバリデーション
+    if ($year < 2000 || $year > 2100 || $month < 1 || $month > 12) {
+        wp_send_json_error('無効な年月が指定されました。');
+        return;
+    }
+
+    // カレンダーHTMLを生成
+    $admin = new TSN_Admin();
+    $reflection = new ReflectionClass($admin);
+    $method = $reflection->getMethod('generate_calendar_view');
+    $method->setAccessible(true);
+    $html = $method->invoke($admin, $year, $month);
+
+    wp_send_json_success(array('html' => $html));
+}

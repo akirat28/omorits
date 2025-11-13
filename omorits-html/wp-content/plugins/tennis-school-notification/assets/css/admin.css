@@ -357,3 +357,380 @@
     font-weight: 600;
     margin-top: 0.5rem;
 }
+
+/* ===========================
+   タブ切り替え
+   =========================== */
+.tsn-view-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.tsn-view-tabs .tab-button {
+    padding: 0.75rem 1.5rem;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.2s ease;
+    position: relative;
+    top: 1px;
+}
+
+.tsn-view-tabs .tab-button:hover {
+    background: #e8e8e8;
+    color: #333;
+}
+
+.tsn-view-tabs .tab-button.active {
+    background: #fff;
+    color: #2271b1;
+    border-bottom: 2px solid #fff;
+}
+
+.tsn-view-content {
+    display: none;
+}
+
+.tsn-view-content.active {
+    display: block;
+}
+
+/* ===========================
+   カレンダー表示
+   =========================== */
+.tsn-calendar-container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.tsn-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #2271b1;
+}
+
+.tsn-calendar-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.tsn-calendar-nav button {
+    padding: 0.5rem 1rem;
+    background: #2271b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.tsn-calendar-nav button:hover {
+    background: #135e96;
+}
+
+.tsn-calendar-nav button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.tsn-calendar-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.tsn-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border: 1px solid #ddd;
+}
+
+.tsn-calendar-weekday {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 700;
+    color: #555;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+
+.tsn-calendar-weekday.sunday {
+    color: #d63638;
+}
+
+.tsn-calendar-weekday.saturday {
+    color: #2271b1;
+}
+
+.tsn-calendar-day {
+    min-height: 120px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    position: relative;
+    background: #fff;
+    transition: background 0.2s ease;
+}
+
+.tsn-calendar-day:hover {
+    background: #f8f9fa;
+}
+
+.tsn-calendar-day.other-month {
+    background: #f5f5f5;
+    color: #999;
+}
+
+.tsn-calendar-day.today {
+    background: #e7f3ff;
+}
+
+.tsn-calendar-day.has-notification {
+    cursor: pointer;
+}
+
+.tsn-calendar-day.no-notification {
+    cursor: pointer;
+}
+
+.tsn-calendar-day.no-notification:hover {
+    background: #f0f8ff;
+}
+
+.tsn-calendar-day.no-notification:hover .tsn-calendar-date::after {
+    content: '+';
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: 24px;
+    height: 24px;
+    background: #2271b1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.tsn-calendar-date {
+    position: relative;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.tsn-calendar-day.other-month .tsn-calendar-date {
+    color: #999;
+}
+
+.tsn-calendar-day.sunday .tsn-calendar-date {
+    color: #d63638;
+}
+
+.tsn-calendar-day.saturday .tsn-calendar-date {
+    color: #2271b1;
+}
+
+.tsn-calendar-notification {
+    padding: 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.tsn-calendar-notification:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tsn-calendar-notification.green {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+.tsn-calendar-notification.yellow {
+    background: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+    color: #333;
+}
+
+.tsn-calendar-notification.red {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+    color: white;
+}
+
+.tsn-calendar-notification-message {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.tsn-calendar-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tsn-calendar-actions .button {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* カレンダー内の通知詳細モーダル */
+.tsn-notification-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100000;
+    align-items: center;
+    justify-content: center;
+}
+
+.tsn-notification-modal.active {
+    display: flex;
+}
+
+.tsn-notification-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.tsn-notification-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.tsn-notification-modal-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.tsn-notification-modal-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+}
+
+.tsn-notification-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+}
+
+.tsn-notification-modal-date {
+    font-size: 1rem;
+    color: #666;
+}
+
+.tsn-notification-modal-body {
+    margin-bottom: 1.5rem;
+}
+
+.tsn-notification-modal-message {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-left: 4px solid #2271b1;
+    border-radius: 4px;
+    line-height: 1.6;
+}
+
+.tsn-notification-modal-footer {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .tsn-calendar-day {
+        min-height: 100px;
+        padding: 0.5rem;
+    }
+
+    .tsn-calendar-date {
+        font-size: 0.85rem;
+    }
+
+    .tsn-calendar-notification {
+        font-size: 0.75rem;
+        padding: 0.4rem;
+        min-height: 50px;
+    }
+
+    .tsn-calendar-notification-message {
+        -webkit-line-clamp: 2;
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    .tsn-calendar-title {
+        font-size: 1.2rem;
+    }
+
+    .tsn-calendar-nav button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .tsn-view-tabs .tab-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .tsn-notification-modal-content {
+        padding: 1.5rem;
+    }
+}

@@ -253,4 +253,247 @@ jQuery(document).ready(function($) {
         });
         $('#notification_date').after(' ').after(todayButton);
     }
+
+    // ===========================
+    // タブ切り替え機能
+    // ===========================
+    $('.tsn-view-tabs .tab-button').on('click', function() {
+        var targetView = $(this).data('view');
+
+        // タブのアクティブ状態を切り替え
+        $('.tsn-view-tabs .tab-button').removeClass('active');
+        $(this).addClass('active');
+
+        // コンテンツの表示/非表示を切り替え
+        $('.tsn-view-content').removeClass('active');
+        $('#tsn-view-' + targetView).addClass('active');
+
+        // 選択したビューをlocalStorageに保存
+        localStorage.setItem('tsn_preferred_view', targetView);
+    });
+
+    // ページ読み込み時に前回のビュー選択を復元
+    var preferredView = localStorage.getItem('tsn_preferred_view');
+    if (preferredView) {
+        $('.tsn-view-tabs .tab-button[data-view="' + preferredView + '"]').click();
+    }
+
+    // ===========================
+    // カレンダー月切り替え機能
+    // ===========================
+    var currentYear = parseInt($('#tsn-calendar-year').val()) || new Date().getFullYear();
+    var currentMonth = parseInt($('#tsn-calendar-month').val()) || new Date().getMonth() + 1;
+
+    // 前月ボタン
+    $('#tsn-calendar-prev').on('click', function() {
+        currentMonth--;
+        if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+        }
+        loadCalendar(currentYear, currentMonth);
+    });
+
+    // 次月ボタン
+    $('#tsn-calendar-next').on('click', function() {
+        currentMonth++;
+        if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+        }
+        loadCalendar(currentYear, currentMonth);
+    });
+
+    // 今月ボタン
+    $('#tsn-calendar-today').on('click', function() {
+        var today = new Date();
+        currentYear = today.getFullYear();
+        currentMonth = today.getMonth() + 1;
+        loadCalendar(currentYear, currentMonth);
+    });
+
+    // カレンダーを読み込む関数
+    function loadCalendar(year, month) {
+        var $calendarGrid = $('#tsn-calendar-grid');
+
+        // ローディング表示
+        $calendarGrid.html('<div style="grid-column: 1 / -1; text-align: center; padding: 2rem;"><span class="tsn-loading"></span> 読み込み中...</div>');
+
+        $.ajax({
+            url: tsn_ajax.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'tsn_get_calendar_data',
+                year: year,
+                month: month,
+                nonce: tsn_ajax.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    // カレンダータイトルを更新
+                    $('#tsn-calendar-title').text(year + '年' + month + '月');
+
+                    // 隠しフィールドを更新
+                    $('#tsn-calendar-year').val(year);
+                    $('#tsn-calendar-month').val(month);
+
+                    // カレンダーグリッドを更新
+                    $calendarGrid.html(response.data.html);
+
+                    // カレンダー内のイベントを再バインド
+                    bindCalendarEvents();
+                } else {
+                    $calendarGrid.html('<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #d63638;">エラー: ' + response.data + '</div>');
+                }
+            },
+            error: function() {
+                $calendarGrid.html('<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #d63638;">通信エラーが発生しました。</div>');
+            }
+        });
+    }
+
+    // カレンダー内のイベントをバインド
+    function bindCalendarEvents() {
+        // 通知クリックでモーダル表示
+        $('.tsn-calendar-notification').on('click', function(e) {
+            e.stopPropagation();
+            var notificationId = $(this).data('id');
+            showNotificationModal(notificationId);
+        });
+
+        // 編集ボタン
+        $('.tsn-calendar-edit-btn').on('click', function(e) {
+            e.stopPropagation();
+            var notificationId = $(this).data('id');
+            window.location.href = '?page=tennis-notification-add&edit=' + notificationId;
+        });
+
+        // 削除ボタン
+        $('.tsn-calendar-delete-btn').on('click', function(e) {
+            e.stopPropagation();
+            var notificationId = $(this).data('id');
+
+            if (confirm('この開催連絡を削除してもよろしいですか？')) {
+                deleteNotification(notificationId);
+            }
+        });
+
+        // 未入力の日付クリックで新規追加画面へ
+        $('.tsn-calendar-day.no-notification').on('click', function(e) {
+            var date = $(this).data('date');
+            if (date) {
+                window.location.href = '?page=tennis-notification-add&date=' + date;
+            }
+        });
+    }
+
+    // 初回バインド
+    if ($('.tsn-calendar-grid').length) {
+        bindCalendarEvents();
+    }
+
+    // 通知詳細モーダル表示
+    function showNotificationModal(notificationId) {
+        $.ajax({
+            url: tsn_ajax.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'tsn_get_notification',
+                id: notificationId,
+                nonce: tsn_ajax.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    var data = response.data;
+
+                    // 日付フォーマット
+                    var dateObj = new Date(data.notification_date);
+                    var weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+                    var formattedDate = (dateObj.getMonth() + 1) + '月' + dateObj.getDate() + '日（' + weekdays[dateObj.getDay()] + '）';
+
+                    // 色ラベル
+                    var colorLabels = {
+                        'green': '通常連絡',
+                        'yellow': '注意連絡',
+                        'red': '中止連絡'
+                    };
+
+                    // モーダルHTMLを生成
+                    var modalHtml = '<div class="tsn-notification-modal active" id="tsn-notification-modal">' +
+                                   '<div class="tsn-notification-modal-content">' +
+                                   '<button class="tsn-notification-modal-close" id="tsn-modal-close">&times;</button>' +
+                                   '<div class="tsn-notification-modal-header">' +
+                                   '<h2 class="tsn-notification-modal-title">' + formattedDate + 'の開催連絡</h2>' +
+                                   '<div class="tsn-notification-modal-date">' +
+                                   '<span class="tsn-color-badge ' + data.color + '">' + colorLabels[data.color] + '</span>' +
+                                   '</div>' +
+                                   '</div>' +
+                                   '<div class="tsn-notification-modal-body">' +
+                                   '<div class="tsn-notification-modal-message">' + escapeHtml(data.message) + '</div>' +
+                                   '</div>' +
+                                   '<div class="tsn-notification-modal-footer">' +
+                                   '<a href="?page=tennis-notification-add&edit=' + data.id + '" class="button button-primary">編集</a>' +
+                                   '<button class="button tsn-modal-delete-btn" data-id="' + data.id + '">削除</button>' +
+                                   '<button class="button" id="tsn-modal-close-btn">閉じる</button>' +
+                                   '</div>' +
+                                   '</div>' +
+                                   '</div>';
+
+                    // モーダルを追加
+                    $('body').append(modalHtml);
+
+                    // モーダルを閉じるイベント
+                    $('#tsn-modal-close, #tsn-modal-close-btn').on('click', function() {
+                        $('#tsn-notification-modal').remove();
+                    });
+
+                    // モーダル背景クリックで閉じる
+                    $('#tsn-notification-modal').on('click', function(e) {
+                        if ($(e.target).is('#tsn-notification-modal')) {
+                            $('#tsn-notification-modal').remove();
+                        }
+                    });
+
+                    // 削除ボタン
+                    $('.tsn-modal-delete-btn').on('click', function() {
+                        var id = $(this).data('id');
+                        if (confirm('この開催連絡を削除してもよろしいですか？')) {
+                            deleteNotification(id);
+                            $('#tsn-notification-modal').remove();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    // 通知削除関数
+    function deleteNotification(notificationId) {
+        $.ajax({
+            url: tsn_ajax.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'tsn_delete_notification',
+                id: notificationId,
+                nonce: tsn_ajax.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    // カレンダーを再読み込み
+                    var year = parseInt($('#tsn-calendar-year').val());
+                    var month = parseInt($('#tsn-calendar-month').val());
+                    if (year && month) {
+                        loadCalendar(year, month);
+                    } else {
+                        location.reload();
+                    }
+                } else {
+                    alert('削除に失敗しました: ' + response.data);
+                }
+            },
+            error: function() {
+                alert('通信エラーが発生しました。');
+            }
+        });
+    }
 });

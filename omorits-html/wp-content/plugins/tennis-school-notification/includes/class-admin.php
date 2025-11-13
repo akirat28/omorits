@@ -60,6 +60,9 @@ class TSN_Admin {
             $notification = TSN_Database::get_notification($edit_id);
         }
 
+        // URLパラメータから日付を取得（カレンダーからの遷移用）
+        $preset_date = isset($_GET['date']) ? sanitize_text_field($_GET['date']) : '';
+
         // メッセージ表示
         if (isset($_GET['message'])) {
             switch ($_GET['message']) {
@@ -106,7 +109,7 @@ class TSN_Admin {
                                        id="notification_date"
                                        name="notification_date"
                                        class="regular-text datepicker"
-                                       value="<?php echo $notification ? esc_attr($notification['notification_date']) : ''; ?>"
+                                       value="<?php echo $notification ? esc_attr($notification['notification_date']) : esc_attr($preset_date); ?>"
                                        required />
                                 <p class="description">開催連絡を表示する日付を選択してください</p>
                             </td>
@@ -202,10 +205,42 @@ class TSN_Admin {
         // 削除処理
         if (isset($_GET['delete']) && isset($_GET['_wpnonce'])) {
             if (wp_verify_nonce($_GET['_wpnonce'], 'delete_notification_' . $_GET['delete'])) {
+                // 削除前に日付を取得
+                $notification = TSN_Database::get_notification($_GET['delete']);
                 TSN_Database::delete_notification($_GET['delete']);
+
+                // 削除した日付の年月にリダイレクト
+                if ($notification) {
+                    $date_parts = explode('-', $notification['notification_date']);
+                    $year = $date_parts[0];
+                    $month = intval($date_parts[1]);
+                    wp_redirect(add_query_arg(array(
+                        'page' => 'tennis-notification',
+                        'message' => 'deleted',
+                        'year' => $year,
+                        'month' => $month
+                    ), admin_url('admin.php')));
+                    exit;
+                }
                 echo '<div class="notice notice-success is-dismissible"><p>削除しました。</p></div>';
             }
         }
+
+        // メッセージ表示
+        if (isset($_GET['message'])) {
+            switch ($_GET['message']) {
+                case 'saved':
+                    echo '<div class="notice notice-success is-dismissible"><p>開催連絡を保存しました。</p></div>';
+                    break;
+                case 'deleted':
+                    echo '<div class="notice notice-success is-dismissible"><p>削除しました。</p></div>';
+                    break;
+            }
+        }
+
+        // カレンダー表示用の年月を取得（デフォルトは今月）
+        $calendar_year = isset($_GET['year']) ? intval($_GET['year']) : intval(current_time('Y'));
+        $calendar_month = isset($_GET['month']) ? intval($_GET['month']) : intval(current_time('m'));
 
         // ページネーション設定
         $per_page = 20; // 1ページあたりの表示件数
@@ -232,6 +267,34 @@ class TSN_Admin {
                 開催連絡一覧
                 <a href="<?php echo admin_url('admin.php?page=tennis-notification-add'); ?>" class="page-title-action">新規追加</a>
             </h1>
+
+            <!-- タブ切り替え -->
+            <div class="tsn-view-tabs">
+                <button class="tab-button active" data-view="calendar">カレンダー表示</button>
+                <button class="tab-button" data-view="list">リスト表示</button>
+            </div>
+
+            <!-- カレンダー表示 -->
+            <div id="tsn-view-calendar" class="tsn-view-content active">
+                <div class="tsn-calendar-container">
+                    <div class="tsn-calendar-header">
+                        <div class="tsn-calendar-nav">
+                            <button id="tsn-calendar-prev">前月</button>
+                            <button id="tsn-calendar-today">今月</button>
+                            <button id="tsn-calendar-next">翌月</button>
+                        </div>
+                        <h2 class="tsn-calendar-title" id="tsn-calendar-title"><?php echo $calendar_year; ?>年<?php echo $calendar_month; ?>月</h2>
+                    </div>
+                    <div class="tsn-calendar-grid" id="tsn-calendar-grid">
+                        <?php echo $this->generate_calendar_view($calendar_year, $calendar_month); ?>
+                    </div>
+                    <input type="hidden" id="tsn-calendar-year" value="<?php echo $calendar_year; ?>" />
+                    <input type="hidden" id="tsn-calendar-month" value="<?php echo $calendar_month; ?>" />
+                </div>
+            </div>
+
+            <!-- リスト表示 -->
+            <div id="tsn-view-list" class="tsn-view-content">
 
             <?php if (empty($notifications)) : ?>
                 <p>開催連絡はまだ登録されていません。</p>
@@ -317,6 +380,8 @@ class TSN_Admin {
                     </div>
                 <?php endif; ?>
             <?php endif; ?>
+            </div>
+            <!-- /リスト表示 -->
 
             <div class="tsn-info-box">
                 <h3>ショートコードの使い方</h3>
@@ -379,12 +444,20 @@ class TSN_Admin {
         // 保存
         $result = TSN_Database::save_notification($data);
 
+        // 登録した日付から年月を取得
+        $notification_date = $data['notification_date']; // YYYY-MM-DD形式
+        $date_parts = explode('-', $notification_date);
+        $year = $date_parts[0];
+        $month = intval($date_parts[1]);
+
         // リダイレクト
         if ($result) {
             $redirect_url = add_query_arg(
                 array(
                     'page' => 'tennis-notification',
-                    'message' => 'saved'
+                    'message' => 'saved',
+                    'year' => $year,
+                    'month' => $month
                 ),
                 admin_url('admin.php')
             );
@@ -400,5 +473,134 @@ class TSN_Admin {
 
         wp_redirect($redirect_url);
         exit;
+    }
+
+    /**
+     * カレンダー表示を生成
+     */
+    private function generate_calendar_view($year, $month) {
+        // 月の最初の日と最後の日
+        $first_day = mktime(0, 0, 0, $month, 1, $year);
+        $last_day = mktime(0, 0, 0, $month + 1, 0, $year);
+
+        $first_weekday = date('w', $first_day); // 0 (日曜) から 6 (土曜)
+        $days_in_month = date('t', $first_day);
+
+        // 前月の日付を取得
+        $prev_month_days = date('t', mktime(0, 0, 0, $month - 1, 1, $year));
+        $prev_month = $month - 1;
+        $prev_year = $year;
+        if ($prev_month < 1) {
+            $prev_month = 12;
+            $prev_year--;
+        }
+
+        // 次月
+        $next_month = $month + 1;
+        $next_year = $year;
+        if ($next_month > 12) {
+            $next_month = 1;
+            $next_year++;
+        }
+
+        // 該当月の通知を取得
+        $date_from = sprintf('%04d-%02d-01', $year, $month);
+        $date_to = sprintf('%04d-%02d-%02d', $year, $month, $days_in_month);
+
+        $notifications = TSN_Database::get_notifications(array(
+            'date_from' => $date_from,
+            'date_to' => $date_to,
+            'orderby' => 'notification_date',
+            'order' => 'ASC'
+        ));
+
+        // 日付ごとの通知を配列に格納
+        $notifications_by_date = array();
+        foreach ($notifications as $notification) {
+            $notifications_by_date[$notification['notification_date']] = $notification;
+        }
+
+        // 今日の日付
+        $today = current_time('Y-m-d');
+
+        // 曜日ヘッダー
+        $weekdays = array('日', '月', '火', '水', '木', '金', '土');
+        $output = '';
+
+        foreach ($weekdays as $index => $weekday) {
+            $class = '';
+            if ($index == 0) $class = ' sunday';
+            if ($index == 6) $class = ' saturday';
+            $output .= '<div class="tsn-calendar-weekday' . $class . '">' . $weekday . '</div>';
+        }
+
+        // カレンダーの日付セルを生成
+        $day_count = 0;
+
+        // 前月の日付を表示
+        for ($i = $first_weekday - 1; $i >= 0; $i--) {
+            $day = $prev_month_days - $i;
+            $date = sprintf('%04d-%02d-%02d', $prev_year, $prev_month, $day);
+            $weekday_index = $day_count % 7;
+            $class = 'tsn-calendar-day other-month';
+            if ($weekday_index == 0) $class .= ' sunday';
+            if ($weekday_index == 6) $class .= ' saturday';
+
+            $output .= '<div class="' . $class . '">';
+            $output .= '<div class="tsn-calendar-date">' . $day . '</div>';
+            $output .= '</div>';
+            $day_count++;
+        }
+
+        // 当月の日付を表示
+        for ($day = 1; $day <= $days_in_month; $day++) {
+            $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
+            $weekday_index = $day_count % 7;
+
+            $class = 'tsn-calendar-day';
+            if ($weekday_index == 0) $class .= ' sunday';
+            if ($weekday_index == 6) $class .= ' saturday';
+            if ($date == $today) $class .= ' today';
+
+            if (isset($notifications_by_date[$date])) {
+                $class .= ' has-notification';
+            } else {
+                // 通知がない日付はクリック可能にする
+                $class .= ' no-notification';
+            }
+
+            $output .= '<div class="' . $class . '" data-date="' . esc_attr($date) . '">';
+            $output .= '<div class="tsn-calendar-date">' . $day . '</div>';
+
+            // 通知がある場合は表示
+            if (isset($notifications_by_date[$date])) {
+                $notification = $notifications_by_date[$date];
+                $message_short = mb_strimwidth($notification['message'], 0, 50, '...');
+
+                $output .= '<div class="tsn-calendar-notification ' . esc_attr($notification['color']) . '" data-id="' . $notification['id'] . '">';
+                $output .= '<div class="tsn-calendar-notification-message">' . esc_html($message_short) . '</div>';
+                $output .= '</div>';
+            }
+
+            $output .= '</div>';
+            $day_count++;
+        }
+
+        // 次月の日付を表示（カレンダーを6週分にするため）
+        $remaining_cells = 42 - $day_count; // 6週 × 7日 = 42セル
+        for ($day = 1; $day <= $remaining_cells; $day++) {
+            $date = sprintf('%04d-%02d-%02d', $next_year, $next_month, $day);
+            $weekday_index = $day_count % 7;
+            $class = 'tsn-calendar-day other-month';
+            if ($weekday_index == 0) $class .= ' sunday';
+            if ($weekday_index == 6) $class .= ' saturday';
+
+            $output .= '<div class="' . $class . '">';
+            $output .= '<div class="tsn-calendar-date">' . $day . '</div>';
+            $output .= '</div>';
+            $day_count++;
+        }
+
+        return $output;
     }
 }
