@@ -620,36 +620,82 @@ get_header();
                 </div>
 
                 <p class="contact-description">
-                    お問合せにつきましては電話またはFAXにてお願い致します。
+                    当スクールに興味をお持ちいただきありがとうございます。テニスを通じて健康づくりや技術向上を目指していきたいと思います。どうぞよろしくお願いいたします。
                 </p>
 
-                <div class="contact-info-box">
-                    <div class="contact-hours">
-                        <div class="hours-icon">🕐</div>
-                        <div class="hours-info">
-                            <h4>営業時間</h4>
-                            <p>午前9時から午後5時</p>
-                        </div>
-                    </div>
 
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>TEL & FAX</h4>
-                                <p class="contact-number"><a href="tel:03-3775-9711">03-3775-9711</a></p>
+                <p class="contact-description">
+                    お問合せにつきましては下記フォーム、または電話・FAXにてお願い致します。
+                </p>
+
+                <!-- 2カラムレイアウト -->
+                <div class="contact-main-grid">
+                    <!-- 左側：お問い合わせフォーム -->
+                    <div class="contact-form-wrapper">
+                        <form id="home-contact-form" class="home-contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">
+                                    お名前<span class="required-badge">必須</span>
+                                </label>
+                                <input type="text" id="contact-name" name="name" required placeholder="例：山田 太郎">
                             </div>
+
+                            <div class="form-group">
+                                <label for="contact-address">住所</label>
+                                <input type="text" id="contact-address" name="address" placeholder="例：東京都大田区大森北1-2-3">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-phone">電話番号</label>
+                                <input type="tel" id="contact-phone" name="phone" placeholder="例：03-1234-5678">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email">
+                                    メールアドレス<span class="required-badge">必須</span>
+                                </label>
+                                <input type="email" id="contact-email" name="email" required placeholder="例：example@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-comment">コメント</label>
+                                <textarea id="contact-comment" name="comment" rows="5" placeholder="お問い合わせ内容をご記入ください"></textarea>
+                            </div>
+
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary btn-large" id="contact-submit-btn">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>送信する</span>
+                                </button>
+                            </div>
+
+                            <div id="form-message" class="form-message" style="display: none;"></div>
+                        </form>
+                    </div>
+
+                    <!-- 右側：営業時間と電話番号カード -->
+                    <div class="contact-info-sidebar">
+                        <!-- 営業時間カード -->
+                        <div class="contact-info-card">
+                            <div class="contact-card-icon">🕐</div>
+                            <h4 class="contact-card-title">営業時間</h4>
+                            <p class="contact-card-content">午前9時から午後5時</p>
+                        </div>
+
+                        <!-- 電話番号カード -->
+                        <div class="contact-info-card">
+                            <div class="contact-card-icon">📞</div>
+                            <h4 class="contact-card-title">TEL & FAX</h4>
+                            <a href="tel:03-3775-9711" class="contact-phone-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+                                </svg>
+                                <span>03-3775-9711</span>
+                            </a>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-buttons">
-                    <a href="tel:03-3775-9711" class="btn btn-primary btn-large">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
-                        </svg>
-                        <span>今すぐ電話する</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -767,6 +813,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 自動スクロール開始
         startAutoSlide();
+    }
+
+    // お問い合わせフォームの送信処理
+    const contactForm = document.getElementById('home-contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('contact-submit-btn');
+            const formMessage = document.getElementById('form-message');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // ボタンを無効化してローディング表示
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>送信中...</span>';
+            formMessage.style.display = 'none';
+
+            // フォームデータを収集
+            const formData = new FormData(contactForm);
+            formData.append('action', 'omori_contact_form');
+            formData.append('nonce', '<?php echo wp_create_nonce('omori_contact_nonce'); ?>');
+
+            // AJAXでフォーム送信
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = data.data.message;
+                    formMessage.style.display = 'block';
+                    contactForm.reset();
+                } else {
+                    formMessage.className = 'form-message error';
+                    formMessage.textContent = data.data.message || 'エラーが発生しました。もう一度お試しください。';
+                    formMessage.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = '送信に失敗しました。もう一度お試しください。';
+                formMessage.style.display = 'block';
+            })
+            .finally(() => {
+                // ボタンを再度有効化
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
+        });
     }
 });
 </script>
