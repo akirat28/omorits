@@ -553,23 +553,16 @@ get_header();
             <!-- 左側：地図 -->
             <div class="access-map-wrapper">
                 <div class="map-container">
-                    <div class="map-placeholder">
-                        <svg class="map-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                            <path d="M40 20C30.61 20 23 27.61 23 37c0 11.7 17 33 17 33s17-21.3 17-33c0-9.39-7.61-17-17-17zm0 23c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" fill="currentColor" opacity="0.6"/>
-                        </svg>
-                        <p class="map-text">Google Maps</p>
-                        <p class="map-instruction">地図を読み込み中...</p>
-                        <!-- 実際のGoogle Maps埋め込みコード例 -->
-                        <!-- <iframe
-                            src="https://maps.google.com/maps?q=東京都大田区大森北1-2-3&output=embed"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy">
-                        </iframe> -->
-                    </div>
+                    <!-- Google Maps埋め込み -->
+                    <iframe
+                        src="https://maps.google.com/maps?q=大森テニスクラブ、テニススクール/@35.5876932,139.7234519,17z&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
 

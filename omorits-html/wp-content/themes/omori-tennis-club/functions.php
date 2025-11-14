@@ -32,6 +32,15 @@ add_action('after_setup_theme', 'omori_tennis_setup');
 // スタイルとスクリプトの読み込み
 function omori_tennis_scripts() {
     wp_enqueue_style('omori-tennis-style', get_stylesheet_uri(), array(), '1.0');
+    
+    // テーマ用JavaScriptファイルの読み込み
+    wp_enqueue_script(
+        'omori-tennis-theme', 
+        get_template_directory_uri() . '/js/theme.js', 
+        array(), 
+        '1.0', 
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'omori_tennis_scripts');
 
