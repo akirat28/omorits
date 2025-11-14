@@ -529,9 +529,9 @@ get_header();
                 <div class="campaign-cta">
                     <p class="cta-text">お申込み・お問い合わせは受付までお願いいたします。</p>
                     <div class="cta-buttons">
-                        <a href="tel:03-3775-9711" class="btn btn-primary btn-large">
+                        <a href="#contact" class="btn btn-primary btn-large">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
                             </svg>
                             <span>今すぐお申し込み</span>
                         </a>
@@ -616,7 +616,7 @@ get_header();
             <div class="contact-content">
                 <div class="section-header">
                     <span class="section-label">Contact</span>
-                    <h2 class="section-title">入会の申込とお問い合わせ</h2>
+                    <h2 class="section-title">入会＆体験レッスンの申込</h2>
                 </div>
 
                 <p class="contact-description">

@@ -224,7 +224,7 @@ body {
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  min-width: 220px;
+  min-width: 280px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -1650,7 +1650,7 @@ body {
 }
 
 .page-container {
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -1911,7 +1911,7 @@ body {
 .content-area {
   background: white;
   border-radius: 16px;
-  padding: 2.5rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-top: 0;
 }
@@ -3791,7 +3791,7 @@ body {
 .coach-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .coach-section__label {
@@ -4015,7 +4015,7 @@ body {
 }
 
 .coach-card__content {
-  padding: 3.5rem 3rem;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

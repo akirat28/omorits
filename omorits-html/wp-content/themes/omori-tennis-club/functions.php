@@ -202,11 +202,14 @@ function omori_tennis_main_menu($args = array()) {
     // 体験レッスンへのリンク
     echo '<li><a href="' . esc_url(home_url('/#trial')) . '">体験レッスン</a></li>';
 
-    // キャンペーンへのリンク
-    echo '<li><a href="' . esc_url(home_url('/#campaign')) . '">キャンペーン</a></li>';
+    // 新規入会キャンペーンへのリンク
+    echo '<li><a href="' . esc_url(home_url('/#campaign')) . '">新規入会キャンペーン</a></li>';
 
     // アクセスへのリンク
     echo '<li><a href="' . esc_url(home_url('/#access')) . '">アクセス</a></li>';
+
+    // 入会＆体験レッスンの申込へのリンク
+    echo '<li><a href="' . esc_url(home_url('/#contact')) . '">入会＆体験レッスンの申込</a></li>';
 
     echo '</ul>';
 }
