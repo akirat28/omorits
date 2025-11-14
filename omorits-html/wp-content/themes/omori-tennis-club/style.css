@@ -3782,7 +3782,461 @@ body {
   font-weight: 700;
 }
 
-/* コーチ紹介ページ */
+/* ================================================
+   コーチ紹介ページ
+   ================================================ */
+
+/* クラステンプレート用スタイル */
+.class-hero {
+  position: relative;
+  padding: 8rem 0 6rem;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  color: white;
+}
+
+.class-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+}
+
+.class-hero__content {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.class-hero__label {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.class-hero__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.class-hero__subtitle {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.class-hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.class-hero__button {
+  background: white;
+  color: #667eea;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.class-hero__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* メリットセクション */
+.class-benefits {
+  padding: 4rem 0;
+  background: #f8f9fa;
+}
+
+.class-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefit-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-card__icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.benefit-card__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+.benefit-card__description {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* クラスセクション */
+.class-section {
+  padding: 5rem 0;
+}
+
+.class-section--alternate {
+  background: #f8f9fa;
+}
+
+.class-section__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.class-section__label {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.class-section__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+.class-section__description {
+  color: #4a5568;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* クラスグリッド */
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* クラスカード */
+.class-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--accent-color, #667eea);
+}
+
+.class-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.class-card__header {
+  position: relative;
+}
+
+.class-card__image {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.class-card__level {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 2rem 1.5rem 1.5rem;
+  color: white;
+}
+
+.class-card__category {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.class-card__level-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.class-card__test-badge {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.class-card__content {
+  padding: 2rem;
+}
+
+.class-card__target {
+  margin-bottom: 1.5rem;
+}
+
+.class-card__target-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-color, #667eea);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.class-card__target-text {
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.class-card__description {
+  margin-bottom: 1.5rem;
+}
+
+.class-card__description p {
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+.class-card__features {
+  margin-bottom: 1.5rem;
+}
+
+.class-card__features-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-color, #667eea);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.class-card__features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.class-card__features-list li {
+  color: #4a5568;
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.class-card__features-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color, #667eea);
+  font-weight: 700;
+}
+
+.class-card__schedule {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.class-card__schedule-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.class-card__schedule-info svg {
+  color: var(--accent-color, #667eea);
+}
+
+.class-card__capacity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e53e3e;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+}
+
+.class-card__capacity svg {
+  color: #e53e3e;
+}
+
+/* ジュニアクラスカード */
+.class-card--junior {
+  border-top-color: #00BCD4;
+}
+
+.class-card--junior .class-card__target-title,
+.class-card--junior .class-card__features-title {
+  color: #00BCD4;
+}
+
+.class-card--junior .class-card__features-list li::before,
+.class-card--junior .class-card__schedule-info svg {
+  color: #00BCD4;
+}
+
+/* CTAセクション */
+.class-cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.class-cta__inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.class-cta__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.class-cta__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.class-cta__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.class-cta__button {
+  background: white;
+  color: #667eea;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.class-cta__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.class-cta__link {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.class-cta__link:hover {
+  background: white;
+  color: #667eea;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .class-hero__title {
+    font-size: 2.5rem;
+  }
+  
+  .class-hero__subtitle {
+    font-size: 1rem;
+  }
+  
+  .class-section__title {
+    font-size: 2rem;
+  }
+  
+  .class-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .class-card__content {
+    padding: 1.5rem;
+  }
+  
+  .class-cta__title {
+    font-size: 2rem;
+  }
+  
+  .class-cta__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .class-cta__button,
+  .class-cta__link {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 .coach-page {
   background: #f8f9fa;
   color: #1a202c;
