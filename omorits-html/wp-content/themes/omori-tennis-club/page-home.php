@@ -409,6 +409,10 @@ get_header();
                         <span class="price-label">体験料</span>
                         <span class="price-amount">¥1,100</span>
                     </div>
+                    <div class="trial-apply-link">
+                        <p class="apply-text">お申し込みはこちら</p>
+                        <a href="#contact" class="apply-link">入会＆体験レッスンの申込</a>
+                    </div>
                 </div>
 
                 <div class="trial-info-grid">
@@ -579,23 +583,22 @@ get_header();
                         <div class="access-method">
                             <h4>🗺️ 住所</h4>
                             <ul>
-                                <li>〒143-0016 東京都大田区大森北1-2-3</li>
+                                <li>〒143-0023 東京都大田区山王2-24-12</li>
                                 <li>TEL <a href="tel:03-3775-9711">03-3775-9711</a></li>
                             </ul>
                         </div>
                         <div class="access-method">
                             <h4>🚃 電車でお越しの方</h4>
                             <ul>
-                                <li>JR京浜東北線「大森駅」北口より徒歩5分</li>
-                                <li>京急本線「大森海岸駅」より徒歩10分</li>
+                                <li>JJR大森駅山王西口から５分、天祖神社への階段を上がり、フラワーデザインスクールを右に曲がり３つめの角を左へ</li>
                             </ul>
                         </div>
                         <div class="access-method">
                             <h4>🚗 お車でお越しの方</h4>
                             <ul>
-                                <li>第一京浜（国道15号）大森北交差点より2分</li>
-                                <li>専用駐車場20台完備（会員様無料）</li>
-                                <li>近隣コインパーキングあり</li>
+                                <li>車では２方向からクラブに行くことができます。</li>
+                                <li>補助40号から「うなぎ屋」の横の路を入り突き当たりを左に300ｍ</li>
+                                <li>大森駅から池上通り沿いに３つめの信号を右折、坂を道なりに200ｍ進み右折。</li>
                             </ul>
                         </div>
                 </div>
@@ -618,13 +621,11 @@ get_header();
 
 
                 <p class="contact-description">
-                    お問合せにつきましては下記フォーム、または電話・FAXにてお願い致します。
+                    お問合せにつきましては下記フォーム、または<a href="tel:03-3775-9711">お電話</a>にてお願い致します。
                 </p>
 
                 <!-- 2カラムレイアウト -->
-                <div class="contact-main-grid">
-                    <!-- 左側：お問い合わせフォーム -->
-                    <div class="contact-form-wrapper">
+                <div class="contact-form-wrapper">
                         <form id="home-contact-form" class="home-contact-form">
                             <div class="form-group">
                                 <label for="contact-name">
@@ -666,29 +667,6 @@ get_header();
 
                             <div id="form-message" class="form-message" style="display: none;"></div>
                         </form>
-                    </div>
-
-                    <!-- 右側：営業時間と電話番号カード -->
-                    <div class="contact-info-sidebar">
-                        <!-- 営業時間カード -->
-                        <div class="contact-info-card">
-                            <div class="contact-card-icon">🕐</div>
-                            <h4 class="contact-card-title">営業時間</h4>
-                            <p class="contact-card-content">午前9時から午後5時</p>
-                        </div>
-
-                        <!-- 電話番号カード -->
-                        <div class="contact-info-card">
-                            <div class="contact-card-icon">📞</div>
-                            <h4 class="contact-card-title">TEL & FAX</h4>
-                            <a href="tel:03-3775-9711" class="contact-phone-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
-                                </svg>
-                                <span>03-3775-9711</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

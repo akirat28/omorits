@@ -294,17 +294,17 @@ $benefits = [
 
         <!-- 右側：メインコンテンツ -->
         <div class="content-area">
-    <section class="class-hero" style="background-image: url('<?php echo esc_url($image_base . 'kv01.jpg'); ?>');">
-        <div class="class-hero__overlay"></div>
-        <div class="coach-container class-hero__content">
-            <span class="class-hero__label">CLASSES</span>
-            <h1 class="class-hero__title"><?php echo esc_html(get_the_title()); ?></h1>
-            <p class="class-hero__subtitle">
+    <section class="coach-hero" style="background-image: url('<?php echo esc_url($image_base . 'kv01.jpg'); ?>');">
+        <div class="coach-hero__overlay"></div>
+        <div class="coach-container coach-hero__content">
+            <span class="coach-hero__label">CLASSES</span>
+            <h1 class="coach-hero__title"><?php echo esc_html(get_the_title()); ?></h1>
+            <p class="coach-hero__subtitle">
                 レベルに合わせた最適なクラスで、理想のテニスライフを実現。
                 初心者から上級者まで、一人ひとりに寄り添った指導を提供します。
             </p>
-            <div class="class-hero__actions">
-                <a class="class-hero__button" href="/#contact">入会＆体験レッスンの申込</a>
+            <div class="coach-hero__actions">
+                <a class="coach-hero__button" href="/#contact">入会＆体験レッスンの申込</a>
             </div>
         </div>
     </section>
