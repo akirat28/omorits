@@ -226,7 +226,7 @@ $amenities = [
     <section class="coach-cta">
         <div class="coach-container coach-cta__inner">
             <div class="coach-cta__text">
-                <h2>体験レッスンで実感してください</h2>
+                <h2>体験レッスンで<br>　実感してください</h2>
                 <p>
                     実際に施設を見て、雰囲気を感じてください。<br>
                     ご希望の日時やご質問もお気軽にご相談ください。

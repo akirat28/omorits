@@ -492,6 +492,7 @@ get_header();
         </div>
     </section>
 
+    <?php if (get_theme_mod('campaign_section_enable', true)): ?>
     <!-- 新規入会案内セクション -->
     <section id="campaign" class="campaign-section">
         <div class="campaign-container">
@@ -499,7 +500,7 @@ get_header();
             <div class="section-header">
                 <span class="section-label">Campaign</span>
                 <h2 class="section-title">新規入会キャンペーン</h2>
-                <p class="deadline">申込期限：11/22日まで</p>
+                <p class="deadline">申込期限：<?php echo esc_html(get_theme_mod('campaign_deadline', '11/22日まで')); ?></p>
             </div>
 
             <div class="campaign-content">
@@ -544,6 +545,7 @@ get_header();
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- アクセスセクション（バランス改良版） -->
     <section id="access" class="access-section">
@@ -635,6 +637,26 @@ get_header();
                             </div>
 
                             <div class="form-group">
+                                <label>
+                                    お問い合わせ種別<span class="required-badge">必須</span>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="inquiry_type" value="入会のお問い合わせ" required>
+                                        <span>入会のお問い合わせ</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="inquiry_type" value="体験レッスンのお申し込み" required>
+                                        <span>体験レッスンのお申し込み</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="inquiry_type" value="その他" required>
+                                        <span>その他</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="contact-address">住所</label>
                                 <input type="text" id="contact-address" name="address" placeholder="例：東京都大田区大森北1-2-3">
                             </div>
@@ -659,7 +681,7 @@ get_header();
                             <div class="form-submit">
                                 <button type="submit" class="btn btn-primary btn-large" id="contact-submit-btn">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
                                     </svg>
                                     <span>送信する</span>
                                 </button>

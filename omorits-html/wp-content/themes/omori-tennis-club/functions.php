@@ -171,6 +171,43 @@ function omori_tennis_customize_register($wp_customize) {
         'section'     => 'hero_section',
         'settings'    => 'hero_shortcode_enable',
     ));
+
+    // キャンペーンセクション設定
+    $wp_customize->add_section('campaign_section', array(
+        'title'       => 'トップページ キャンペーン',
+        'description' => '新規入会キャンペーンセクションの表示/非表示を設定します',
+        'priority'    => 31,
+    ));
+
+    // キャンペーンセクションの表示/非表示設定
+    $wp_customize->add_setting('campaign_section_enable', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('campaign_section_enable', array(
+        'type'        => 'checkbox',
+        'label'       => 'キャンペーンセクションを表示',
+        'description' => 'チェックを外すと新規入会キャンペーンセクションが非表示になります',
+        'section'     => 'campaign_section',
+        'settings'    => 'campaign_section_enable',
+    ));
+
+    // キャンペーン申込期限の設定
+    $wp_customize->add_setting('campaign_deadline', array(
+        'default'           => '11/22日まで',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('campaign_deadline', array(
+        'type'        => 'text',
+        'label'       => '申込期限',
+        'description' => 'キャンペーンの申込期限を入力してください（例：11/22日まで、12月31日まで）',
+        'section'     => 'campaign_section',
+        'settings'    => 'campaign_deadline',
+    ));
 }
 add_action('customize_register', 'omori_tennis_customize_register');
 
@@ -265,6 +302,7 @@ function omori_contact_form_handler() {
 
     // フォームデータの取得とサニタイズ
     $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
+    $inquiry_type = isset($_POST['inquiry_type']) ? sanitize_text_field($_POST['inquiry_type']) : '';
     $address = isset($_POST['address']) ? sanitize_text_field($_POST['address']) : '';
     $phone = isset($_POST['phone']) ? sanitize_text_field($_POST['phone']) : '';
     $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
@@ -273,6 +311,11 @@ function omori_contact_form_handler() {
     // バリデーション
     if (empty($name)) {
         wp_send_json_error(array('message' => 'お名前を入力してください。'));
+        return;
+    }
+
+    if (empty($inquiry_type)) {
+        wp_send_json_error(array('message' => 'お問い合わせ種別を選択してください。'));
         return;
     }
 
@@ -296,6 +339,7 @@ function omori_contact_form_handler() {
     $message = "大森テニスクラブのウェブサイトから新しいお問い合わせがありました。\n\n";
     $message .= "━━━━━━━━━━━━━━━━━━━━━━\n";
     $message .= "お名前: {$name}\n";
+    $message .= "お問い合わせ種別: {$inquiry_type}\n";
 
     if (!empty($address)) {
         $message .= "住所: {$address}\n";

@@ -265,7 +265,7 @@ $flow_steps = [
     <section class="coach-cta">
         <div class="coach-container coach-cta__inner">
             <div class="coach-cta__text">
-                <h2>まずは体験レッスンで実感してください</h2>
+                <h2>まずは体験レッスンで<br>実感してください</h2>
                 <p>
                     レベルや目標に合わせた最適なクラスをご提案します。<br>
                     ご希望の日時やお悩みもお気軽にご相談ください。
