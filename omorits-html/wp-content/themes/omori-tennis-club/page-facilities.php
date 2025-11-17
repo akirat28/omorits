@@ -19,7 +19,7 @@ $facilities = [
         ],
         'description' => '開放的な空間でプレーできる屋外コート。自然光の中、テニスを楽しむ最高の環境です。',
         'quote'       => '「最高の環境で、最高のパフォーマンスを。」',
-        'image'       => $image_base . 'メインコート_1.jpg',
+        'image'       => $image_base . 'maincoat.jpg',
     ],
     [
         'name'        => 'サブコート 6面',
@@ -31,7 +31,7 @@ $facilities = [
         ],
         'description' => '開放的な空間でプレーできる屋外コート。スクール２～４面使用',
         'quote'       => '「自然の中で、テニスを楽しむ。」',
-        'image'       => $image_base . 'サブコート.jpg',
+        'image'       => $image_base . 'subcoat.jpg',
     ],
     [
         'name'        => 'クラブハウス',
@@ -45,7 +45,7 @@ $facilities = [
         ],
         'description' => 'プレーの前後にリラックスできる空間。メンバー同士の交流も生まれるクラブハウスです。',
         'quote'       => '「リラックスして、次のプレーに。」',
-        'image'       => $image_base . 'クラブハウス.jpg',
+        'image'       => $image_base . 'clubhouse.jpg',
     ],
     [
         'name'        => 'ラウンジ',
@@ -59,7 +59,7 @@ $facilities = [
         ],
         'description' => 'テニスパフォーマンス向上のための専門トレーニング機器を完備。体作りからケアまで幅広くサポートします。',
         'quote'       => '「強い身体が、強いプレーを生む。」',
-        'image'       => $image_base . 'ラウンジ.jpg',
+        'image'       => $image_base . 'lounge.jpg',
     ],
 ];
 

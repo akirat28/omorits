@@ -46,7 +46,7 @@ get_header();
         <div class="hero-content">
             <span class="hero-label"> Omori Tennis Club Since 1923</span>
             <h1 class="hero-title">
-                <span class="title-line gradient-text">はじめよう！テニス</span>
+                <span class="title-line gradient-text">あなたのテニスを次のレベルに！</span>
             </h1>
             <p class="hero-description">はじめての一歩も、勝利への挑戦も。<br />みんなが主役のコートで最高の一打を。</p>
             <div class="hero-notification">
@@ -188,7 +188,7 @@ get_header();
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/充実した施設.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
+                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/subcoat.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
                 </div>
                 <h3>充実した施設</h3>
                 <p>砂入り人工芝コート9面を完備。全天候型で快適なプレー環境を提供します。ナイター設備も充実しており、仕事帰りの練習も可能です。</p>
@@ -204,7 +204,7 @@ get_header();
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/多様なクラスとジュニア.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
+                <div class="feature-icon-wrapper" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/class.jpg'); background-size: cover; background-position: center; width: calc(100% + 5rem); height: 250px; margin: -2.5rem -2.5rem 2rem -2.5rem; border-radius: 15px 15px 0 0;">
                 </div>
                 <h3>多様なクラスとジュニア</h3>
                 <p>初級、中級、上級などニーズに合わせた多様なプランをご用意。小学生から大人まで無理なく続けられるクラス体系です。</p>
@@ -229,7 +229,7 @@ get_header();
                     <div class="carousel-track">
                         <!-- 施設1: メインコート -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/メインコート_1.jpg'); background-size: cover; background-position: center;">
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/maincoat.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>メインコート（砂入り人工芝 3面）</h3>
                                     <p>観覧席を備えた広々としたメインコート</p>
@@ -239,7 +239,7 @@ get_header();
 
                         <!-- 施設2: サブコート -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/サブコート.jpg'); background-size: cover; background-position: center;">
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/subcoat.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>サブコート（砂入り人工芝 6面）</h3>
                                     <p>全天候型で快適にプレーできます</p>
@@ -249,7 +249,7 @@ get_header();
 
                         <!-- 施設3: クラブハウス -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/クラブハウス.jpg'); background-size: cover; background-position: center;">
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/clubhouse.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>クラブハウス</h3>
                                     <p>快適な空間でリラックスできます</p>
@@ -259,7 +259,7 @@ get_header();
 
                         <!-- 施設4: シャワールーム -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/シャワー.jpg'); background-size: cover; background-position: center;">
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/shower.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>シャワールーム</h3>
                                     <p>清潔なシャワー設備完備</p>
@@ -279,7 +279,7 @@ get_header();
 
                         <!-- 施設6: ラウンジ -->
                         <div class="facility-slide">
-                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/ラウンジ.jpg'); background-size: cover; background-position: center;">
+                            <div class="facility-image" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/lounge.jpg'); background-size: cover; background-position: center;">
                                 <div class="facility-caption">
                                     <h3>ラウンジ</h3>
                                     <p>くつろぎの空間でリフレッシュ</p>
