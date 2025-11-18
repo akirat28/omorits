@@ -5063,4 +5063,28 @@ body {
   .contact-form-wrapper {
     padding: 1rem !important;
   }
+
+  /* お問い合わせ種別の選択肢をカード内に配置 */
+  .radio-group {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    gap: 0 !important;
+  }
+
+  /* 各選択肢の囲み線を削除 */
+  .radio-label {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.3rem 0.75rem !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  .radio-label:hover {
+    background: rgba(102, 126, 234, 0.05) !important;
+    transform: none !important;
+  }
 }
