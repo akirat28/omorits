@@ -547,7 +547,7 @@ function contact_page_styles() {
             }
 
             .contact-form-wrapper .wpcf7-form {
-                padding: 2rem 1.5rem;
+                padding: 1rem;
                 gap: 1.75rem;
             }
 

@@ -119,14 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ページ読み込み時のアニメーション
+    // ページ読み込み時のアニメーション（ヘッダーを除外）
     function initPageLoadAnimation() {
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 1.5s ease';
-        
-        setTimeout(() => {
-            document.body.style.opacity = '1';
-        }, 300);
+        const mainContent = document.querySelector('.site-main');
+        if (mainContent) {
+            mainContent.style.opacity = '0';
+            mainContent.style.transition = 'opacity 1.5s ease';
+
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+            }, 300);
+        }
     }
     
     // すべての機能を初期化
