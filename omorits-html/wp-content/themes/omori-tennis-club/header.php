@@ -160,8 +160,14 @@ document.addEventListener('DOMContentLoaded', function() {
             body.classList.toggle('menu-open');
         });
 
-        // メニュー外クリックで閉じる
+        // メニュー外クリックで閉じる（リンククリックは除外）
         document.addEventListener('click', function(e) {
+            // リンクをクリックした場合は何もしない
+            const clickedLink = e.target.closest('a');
+            if (clickedLink && mobileNavigation.contains(clickedLink)) {
+                return;
+            }
+
             if (!mobileNavigation.contains(e.target) && !menuToggle.contains(e.target)) {
                 mobileNavigation.classList.remove('is-active');
                 menuToggle.classList.remove('is-active');
@@ -217,9 +223,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const hashIndex = href.indexOf('#');
                 const targetId = href.substring(hashIndex + 1);
 
-                if (targetId && document.getElementById(targetId)) {
-                    e.preventDefault();
-                    smoothScrollToElement(targetId);
+                if (targetId) {
+                    // 現在のページにターゲット要素がある場合はスムーススクロール
+                    if (document.getElementById(targetId)) {
+                        e.preventDefault();
+                        smoothScrollToElement(targetId);
+                    }
+                    // ターゲット要素がない場合（別ページの場合）は通常のリンク遷移を許可
+                    // デフォルト動作でHOMEページに遷移し、そこでハッシュが処理される
                 }
             }
             // 相対URLの場合（例: #features）

@@ -31,14 +31,17 @@ add_action('after_setup_theme', 'omori_tennis_setup');
 
 // スタイルとスクリプトの読み込み
 function omori_tennis_scripts() {
-    wp_enqueue_style('omori-tennis-style', get_stylesheet_uri(), array(), '1.0');
-    
+    // キャッシュブレイク用のバージョン番号
+    $cache_version = '202511182220';
+
+    wp_enqueue_style('omori-tennis-style', get_stylesheet_uri(), array(), $cache_version);
+
     // テーマ用JavaScriptファイルの読み込み
     wp_enqueue_script(
-        'omori-tennis-theme', 
-        get_template_directory_uri() . '/js/theme.js', 
-        array(), 
-        '1.0', 
+        'omori-tennis-theme',
+        get_template_directory_uri() . '/js/theme.js',
+        array(),
+        $cache_version,
         true
     );
 }
@@ -266,19 +269,16 @@ function omori_tennis_sidebar_menu($args = array()) {
 
     echo '<ul class="' . esc_attr($menu_class) . '">';
 
-    // スクール紹介ページへのリンク
-    $school_page = omori_tennis_get_page_by_title('スクール紹介');
-    if ($school_page) {
-        echo '<li><a href="' . esc_url(get_permalink($school_page)) . '">スクール紹介</a></li>';
-    }
+    // スクール紹介へのリンク（HOMEページのアンカー）
+    echo '<li><a href="' . esc_url(home_url('/#school-intro')) . '">スクール紹介</a></li>';
 
-    // コーチページへのリンク
+    // コーチページへのリンク（固定ページが存在する場合）
     $coach_page = omori_tennis_get_page_by_title('コーチ');
     if ($coach_page) {
         echo '<li><a href="' . esc_url(get_permalink($coach_page)) . '">コーチ</a></li>';
     }
 
-    // 施設ページへのリンク
+    // 施設ページへのリンク（固定ページが存在する場合）
     $facilities_page = omori_tennis_get_page_by_title('施設');
     if ($facilities_page) {
         echo '<li><a href="' . esc_url(get_permalink($facilities_page)) . '">施設</a></li>';
