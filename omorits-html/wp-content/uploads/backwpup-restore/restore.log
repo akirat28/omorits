@@ -1,0 +1,4 @@
+[2025-11-22T08:22:45.202300+00:00] restore.WARNING: [2] Attempt to read property "logfile" on bool (/var/www/omori-ts/wp-content/plugins/backwpup/inc/class-page-jobs.php on Line 1058) | PHP 8.2.5 (Linux) [] []
+[2025-11-22T08:22:45.205779+00:00] restore.WARNING: [2] Attempt to read property "job" on bool (/var/www/omori-ts/wp-content/plugins/backwpup/inc/class-page-jobs.php on Line 1169) | PHP 8.2.5 (Linux) [] []
+[2025-11-22T08:22:45.206072+00:00] restore.WARNING: [2] Trying to access array offset on value of type null (/var/www/omori-ts/wp-content/plugins/backwpup/inc/class-page-jobs.php on Line 1169) | PHP 8.2.5 (Linux) [] []
+[2025-11-22T08:27:01.749236+00:00] restore.WARNING: [2] mkdir(): File exists (/var/www/omori-ts/wp-admin/includes/class-wp-filesystem-direct.php on Line 558) | PHP 8.2.5 (Linux) [] []

@@ -26,6 +26,7 @@ services:
     WORDPRESS_DEBUG: 1 # デバッグモードON
   volumes:
      - ./omorits-html:/var/www/html
+     - ./php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini
  phpmyadmin:
   image: phpmyadmin/phpmyadmin:latest
   container_name: phpmyadmin_ingrid
