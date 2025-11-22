@@ -39,15 +39,11 @@
                     ));
                     ?>
 
-                    <!-- 区切り線 -->
-                    <div class="dropdown-divider"></div>
-
                     <!-- 会員メニュー -->
-                    <div class="dropdown-section-title">会員メニュー</div>
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'sidebar',
-                        'menu_class'     => 'dropdown-menu-list dropdown-submenu',
+                        'menu_class'     => 'dropdown-menu-list',
                         'container'      => false,
                         'fallback_cb'    => 'omori_tennis_sidebar_menu',
                     ));
@@ -75,9 +71,8 @@
 
         <!-- モバイルナビゲーション -->
         <nav class="mobile-navigation">
-            <!-- TOPページメニュー -->
+            <!-- メニュー -->
             <div class="mobile-menu-section">
-                <h3 class="mobile-menu-title">メニュー</h3>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
@@ -86,11 +81,6 @@
                     'fallback_cb'    => 'omori_tennis_main_menu',
                 ));
                 ?>
-            </div>
-
-            <!-- 会員メニュー -->
-            <div class="mobile-menu-section">
-                <h3 class="mobile-menu-title">会員メニュー</h3>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'sidebar',
