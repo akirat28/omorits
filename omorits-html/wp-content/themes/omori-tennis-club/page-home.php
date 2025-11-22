@@ -683,69 +683,9 @@ get_header();
                     お問合せにつきましては下記フォーム、または<a href="tel:03-3775-9711">お電話</a>にてお願い致します。
                 </p>
 
-                <!-- 2カラムレイアウト -->
+                <!-- フォーム（プラグインのショートコード） -->
                 <div class="contact-form-wrapper">
-                        <form id="home-contact-form" class="home-contact-form">
-                            <div class="form-group">
-                                <label for="contact-name">
-                                    お名前<span class="required-badge">必須</span>
-                                </label>
-                                <input type="text" id="contact-name" name="name" required placeholder="例：山田 太郎">
-                            </div>
-
-                            <div class="form-group">
-                                <label>
-                                    お問い合わせ種別<span class="required-badge">必須</span>
-                                </label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiry_type" value="入会のお問い合わせ" required>
-                                        <span>入会のお問い合わせ</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiry_type" value="体験レッスンのお申し込み" required>
-                                        <span>体験レッスンのお申し込み</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiry_type" value="その他" required>
-                                        <span>その他</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-address">住所</label>
-                                <input type="text" id="contact-address" name="address" placeholder="例：東京都大田区大森北1-2-3">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-phone">電話番号</label>
-                                <input type="tel" id="contact-phone" name="phone" placeholder="例：03-1234-5678">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-email">
-                                    メールアドレス<span class="required-badge">必須</span>
-                                </label>
-                                <input type="email" id="contact-email" name="email" required placeholder="例：example@email.com">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact-comment">コメント</label>
-                                <textarea id="contact-comment" name="comment" rows="5" placeholder="お問い合わせ内容をご記入ください"></textarea>
-                            </div>
-
-                            <div class="form-submit">
-                                <button type="submit" class="btn btn-primary btn-large" id="contact-submit-btn">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
-                                    </svg>
-                                    <span>送信する</span>
-                                </button>
-                            </div>
-
-                            <div id="form-message" class="form-message" style="display: none;"></div>
-                        </form>
+                    <?php echo do_shortcode('[omori_contact_form]'); ?>
                 </div>
             </div>
         </div>
@@ -863,57 +803,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 自動スクロール開始
         startAutoSlide();
-    }
-
-    // お問い合わせフォームの送信処理
-    const contactForm = document.getElementById('home-contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('contact-submit-btn');
-            const formMessage = document.getElementById('form-message');
-            const originalBtnText = submitBtn.innerHTML;
-
-            // ボタンを無効化してローディング表示
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>送信中...</span>';
-            formMessage.style.display = 'none';
-
-            // フォームデータを収集
-            const formData = new FormData(contactForm);
-            formData.append('action', 'omori_contact_form');
-            formData.append('nonce', '<?php echo wp_create_nonce('omori_contact_nonce'); ?>');
-
-            // AJAXでフォーム送信
-            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    formMessage.className = 'form-message success';
-                    formMessage.textContent = data.data.message;
-                    formMessage.style.display = 'block';
-                    contactForm.reset();
-                } else {
-                    formMessage.className = 'form-message error';
-                    formMessage.textContent = data.data.message || 'エラーが発生しました。もう一度お試しください。';
-                    formMessage.style.display = 'block';
-                }
-            })
-            .catch(error => {
-                formMessage.className = 'form-message error';
-                formMessage.textContent = '送信に失敗しました。もう一度お試しください。';
-                formMessage.style.display = 'block';
-            })
-            .finally(() => {
-                // ボタンを再度有効化
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            });
-        });
     }
 });
 </script>
