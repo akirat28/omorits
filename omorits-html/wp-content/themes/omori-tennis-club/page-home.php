@@ -59,6 +59,63 @@ get_header();
         </div>
     </section>
 
+    <!-- 新着情報セクション -->
+    <?php
+    // 最新の投稿を取得
+    $news_query = new WP_Query(array(
+        'post_type' => 'post',
+        'posts_per_page' => 6,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC'
+    ));
+
+    // 投稿が存在する場合のみセクションを表示
+    if ($news_query->have_posts()) :
+    ?>
+    <section id="news" class="news-section">
+        <div class="news-container">
+            <!-- ヘッダー -->
+            <div class="section-header">
+                <span class="section-label">News</span>
+                <h2 class="section-title">新着情報</h2>
+                <p class="section-description">最新のお知らせをチェック</p>
+            </div>
+
+            <!-- 新着情報カード -->
+            <div class="news-grid">
+                <?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
+                <article class="news-card">
+                    <a href="<?php the_permalink(); ?>" class="news-card-link">
+                        <?php if (has_post_thumbnail()) : ?>
+                        <div class="news-card-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>');"></div>
+                        <?php else : ?>
+                        <div class="news-card-image news-card-image-placeholder">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <rect x="10" y="10" width="60" height="60" rx="4" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                <path d="M30 40L40 50L50 30" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <?php endif; ?>
+                        <div class="news-card-content">
+                            <time class="news-card-date" datetime="<?php echo get_the_date('c'); ?>">
+                                <?php echo get_the_date('Y.m.d'); ?>
+                            </time>
+                            <h3 class="news-card-title"><?php the_title(); ?></h3>
+                            <p class="news-card-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 40, '...'); ?></p>
+                            <span class="news-card-readmore">続きを読む →</span>
+                        </div>
+                    </a>
+                </article>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </section>
+    <?php
+    endif;
+    wp_reset_postdata();
+    ?>
+
     <!-- スクール紹介セクション -->
     <section id="school-intro" class="school-intro-section">
         <div class="school-intro-container">

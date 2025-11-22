@@ -236,6 +236,19 @@ function omori_tennis_main_menu($args = array()) {
 
     echo '<ul class="' . esc_attr($menu_class) . '">';
 
+    // 新着情報が存在するかチェック
+    $news_query = new WP_Query(array(
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'post_status' => 'publish'
+    ));
+
+    // 投稿が存在する場合のみ新着情報メニューを表示
+    if ($news_query->have_posts()) {
+        echo '<li><a href="' . esc_url(home_url('/#news')) . '">新着情報</a></li>';
+    }
+    wp_reset_postdata();
+
     // スクール紹介へのリンク
     echo '<li><a href="' . esc_url(home_url('/#school-intro')) . '">スクール紹介</a></li>';
 
@@ -268,6 +281,19 @@ function omori_tennis_sidebar_menu($args = array()) {
     $menu_class = isset($args['menu_class']) ? $args['menu_class'] : 'sidebar-menu-list';
 
     echo '<ul class="' . esc_attr($menu_class) . '">';
+
+    // 新着情報が存在するかチェック
+    $news_query = new WP_Query(array(
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'post_status' => 'publish'
+    ));
+
+    // 投稿が存在する場合のみ新着情報メニューを表示
+    if ($news_query->have_posts()) {
+        echo '<li><a href="' . esc_url(home_url('/#news')) . '">新着情報</a></li>';
+    }
+    wp_reset_postdata();
 
     // スクール紹介へのリンク（HOMEページのアンカー）
     echo '<li><a href="' . esc_url(home_url('/#school-intro')) . '">スクール紹介</a></li>';
